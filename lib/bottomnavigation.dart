@@ -53,7 +53,11 @@ class _BottomnavigationState extends State<Bottomnavigation> {
                   navigationModel.currentIndex  = 1;
 
               }),
-
+              // buildIconButton(Icons.favorite_border, () {
+              //
+              //     navigationModel.currentIndex  = 2;
+              //
+              // }),
               buildIconButton(Icons.person, () {
 
                   navigationModel.currentIndex  = 3;

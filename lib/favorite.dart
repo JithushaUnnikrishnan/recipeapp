@@ -2,10 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe/view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Favorites extends StatelessWidget {
+class Favorites extends StatefulWidget {
   const Favorites({super.key});
+  @override
+  State<Favorites> createState() => _FavoritesState();
+}
+class _FavoritesState extends State<Favorites> {
+  var favID;
 
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      favID = spref.getString("favtid");
+    });
+    print("sharedPreference Data get");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

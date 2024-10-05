@@ -62,7 +62,9 @@ class _AppetizerState extends State<Appetizer> {
           final reciperappet = snapshot.data?.docs ?? [];
           final filteredRecipes = reciperappet.where((recipe) {
             final recipeName = recipe["reci_name"] as String;
-            return recipeName.toLowerCase().contains(widget.searchQuery.toLowerCase());
+            final recipeDescription = recipe["description"] as String;
+            return recipeName.toLowerCase().contains(widget.searchQuery.toLowerCase()) ||
+                recipeDescription.toLowerCase().contains(widget.searchQuery.toLowerCase());
           }).toList();
           return Scaffold(
             backgroundColor: Colors.black,
@@ -89,7 +91,7 @@ class _AppetizerState extends State<Appetizer> {
                           color[index],
                           NetworkImage(filteredRecipes[index]["image_url"]),
                           filteredRecipes[index]["reci_name"],
-                          filteredRecipes[index]["description"]),
+                          filteredRecipes[index]["breif"]),
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * .01),
 
@@ -119,26 +121,30 @@ class _AppetizerState extends State<Appetizer> {
             ],
           ),
           SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 18),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(color: Colors.red, fontSize: 18,fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              Text(
-                description, // Use the appetizer name passed to the method
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                Wrap(
+                children: [
+                  Text(
+                    description,
+                    style: GoogleFonts.poppins(color: Colors.black, fontSize: 12),
+                  ),
+                ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
-      height: 150,
+      height: 200,
       width: 395,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

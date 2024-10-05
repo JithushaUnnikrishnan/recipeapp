@@ -39,6 +39,7 @@ class _addreciState extends State<addreci> {
   var category = TextEditingController();
   var servings = TextEditingController();
   var description = TextEditingController();
+  var bfdescription=TextEditingController();
   List<String> categorylist = ["dessert", "appetizers", "maincourse"];
   String? selectedvalue;
 
@@ -83,6 +84,7 @@ class _addreciState extends State<addreci> {
 
 
       await FirebaseFirestore.instance.collection("Addrecipe").add({
+
         "reci_name": reci_name.text,
         "time": time.text,
         "ingredients": ingredients.text,
@@ -90,6 +92,7 @@ class _addreciState extends State<addreci> {
         "servings": servings.text,
         "description": description.text,
         "image_url": imageUrl,
+        "breif":bfdescription.text,
         "user_id":ID,
       });
 
@@ -181,6 +184,19 @@ class _addreciState extends State<addreci> {
                       border: OutlineInputBorder(),
                       fillColor: Colors.grey[800],
                       hintText: "Enter Description"),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  "Breif Description",
+                  style: GoogleFonts.poppins(color: Colors.white),
+                ),
+                TextFormField(style: TextStyle(color: Colors.white),
+                  controller: bfdescription,
+                  validator: (value){if(value!.isEmpty){return "Empty";}},
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.grey[800],
+                      hintText: "Enter Breif Description atleast 2 or 4 sentenses"),
                 ),
                 SizedBox(height: 16),
                 Text(

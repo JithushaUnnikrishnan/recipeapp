@@ -66,7 +66,7 @@ class _MyReciiState extends State<MyRecii> {
                                   ViewPage(id: recipeview[index].id)));
                     },
                     child: buildCard(context, recipeview[index]["reci_name"],
-                        "delicious", recipeview[index]["image_url"], () {
+                        recipeview[index]["breif"], recipeview[index]["image_url"], () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(

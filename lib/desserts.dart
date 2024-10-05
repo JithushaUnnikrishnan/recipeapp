@@ -85,7 +85,7 @@ class _DessertState extends State<Dessert> {
                     },
                       child: buildContainer(
                           color[index],
-                          NetworkImage(filteredRecipes[index]["image_url"]),filteredRecipes[index]["reci_name"],filteredRecipes[index]["description"]),
+                          NetworkImage(filteredRecipes[index]["image_url"]),filteredRecipes[index]["breif"],filteredRecipes[index]["reci_name"],),
                     ),
                     SizedBox(height: MediaQuery
                         .sizeOf(context)
@@ -116,26 +116,27 @@ class _DessertState extends State<Dessert> {
             ],
           ),
           SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text, // Example dessert name
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 18),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  text,
+                  style: GoogleFonts.poppins(color: Colors.red, fontSize: 18,fontWeight: FontWeight.bold),
                 ),
-              ),
-              Text(
-                description, // Example dessert name
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-            ],
+                Wrap(
+                  children: [
+                    Text(
+                      description,
+                      style: GoogleFonts.poppins(color: Colors.black, fontSize: 12),
+                    ),
+                ],)
+              ],
+            ),
           ),
         ],
       ),
-      height: 150,
+      height: 200,
       width: 395,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

@@ -43,28 +43,40 @@ class _TabbarState extends State<Tabbar> {
                   height: 40,
                   width: 100,
                   child: Tab(
-                    child: Text("All",style: TextStyle(fontSize: 13),),
+                    child: Text(
+                      "All",
+                      style: TextStyle(fontSize: 13),
+                    ),
                   ),
                 ),
                 Container(
                   height: 40,
                   width: 100,
                   child: Tab(
-                    child: Text("Main Course",style: TextStyle(fontSize: 11),),
+                    child: Text(
+                      "Main Course",
+                      style: TextStyle(fontSize: 11),
+                    ),
                   ),
                 ),
                 Container(
                   height: 40,
                   width: 100,
-
                   child: Tab(
-                    child: Text("Desserts",style: TextStyle(fontSize: 12),),
+                    child: Text(
+                      "Desserts",
+                      style: TextStyle(fontSize: 12),
+                    ),
                   ),
                 ),
-                Container( height: 40,
+                Container(
+                  height: 40,
                   width: 100,
                   child: Tab(
-                    child: Text("Appetizers",style: TextStyle(fontSize: 12),),
+                    child: Text(
+                      "Appetizers",
+                      style: TextStyle(fontSize: 12),
+                    ),
                   ),
                 ),
               ]),
@@ -72,21 +84,20 @@ class _TabbarState extends State<Tabbar> {
           automaticallyImplyLeading: false,
           toolbarHeight: 180,
           title: Stack(
-
             children: [
               Container(
                 width: double.infinity,
                 height: 290,
                 decoration: BoxDecoration(
-image: DecorationImage(image: AssetImage("assets/dessert_cheesecake.jpg"),fit: BoxFit.fill
-),
+                  image: DecorationImage(
+                      image: AssetImage("assets/dessert_cheesecake.jpg"),
+                      fit: BoxFit.fill),
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.red,
                 ),
-
               ),
               Positioned(
-top: 100,
+                top: 100,
                 child: Container(
                   width: 355,
                   height: 50,
@@ -96,10 +107,10 @@ top: 100,
                         begin: Alignment.bottomLeft,
                         end: Alignment.bottomRight),
                     borderRadius: BorderRadius.circular(25),
-
                   ),
                   child: TextField(
-                    onChanged: updateSearchQuery, // Update search query on input
+                    onChanged:
+                        updateSearchQuery, // Update search query on input
                     decoration: InputDecoration(
                       hintText: "Find the recipes",
                       hintStyle: TextStyle(color: Colors.white),
@@ -121,18 +132,24 @@ top: 100,
                 top: 170,
                 child: Text(
                   "Explore",
-                  style: GoogleFonts.roboto(fontSize: 30, color: Colors.black87,fontWeight: FontWeight.bold),
+                  style: GoogleFonts.roboto(
+                      fontSize: 30,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-
             ],
           ),
         ),
         body: Column(
           children: [
             Expanded(
-                child: TabBarView(
-                    children: [Homee(searchQuery: searchQuery), Maincourse(searchQuery: searchQuery), Dessert(searchQuery: searchQuery), Appetizer(searchQuery: searchQuery)])),
+                child: TabBarView(children: [
+              Homee(searchQuery: searchQuery),
+              Maincourse(searchQuery: searchQuery),
+              Dessert(searchQuery: searchQuery),
+              Appetizer(searchQuery: searchQuery)
+            ])),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe/view.dart';
 
 class Homee extends StatefulWidget {
@@ -45,7 +46,9 @@ class _HomeeState extends State<Homee> {
         final reciperdetail = snapshot.data?.docs ?? [];
         final filteredRecipes = reciperdetail.where((recipe) {
           final recipeName = recipe["reci_name"] as String;
-          return recipeName.toLowerCase().contains(widget.searchQuery.toLowerCase());
+          final recipeDescription = recipe["description"] as String;
+          return recipeName.toLowerCase().contains(widget.searchQuery.toLowerCase()) ||
+              recipeDescription.toLowerCase().contains(widget.searchQuery.toLowerCase());
         }).toList();
         return Scaffold(
           backgroundColor: Colors.black,
@@ -77,7 +80,7 @@ class _HomeeState extends State<Homee> {
                         color[index],
                         NetworkImage(filteredRecipes[index]["image_url"]),
                         filteredRecipes[index]["reci_name"],
-                        filteredRecipes[index]["description"]),
+                        filteredRecipes[index]["breif"]),
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * .01,
@@ -111,22 +114,28 @@ class _HomeeState extends State<Homee> {
           ),
           SizedBox(width: 16),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text,
-                style: TextStyle(color: Colors.red, fontSize: 18),
-              ),
-              Text(
-                description,
-                style: TextStyle(color: Colors.red, fontSize: 18),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  text,
+                  style: GoogleFonts.poppins(color: Colors.red, fontSize: 18,fontWeight: FontWeight.bold),
+                ),
+                Wrap(
+                 children: [
+                   Text(
+                     description,
+                     style: GoogleFonts.poppins(color: Colors.black, fontSize: 12),
+                   ),
+                 ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
-      height: 150,
+      height: 200,
       width: 395,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

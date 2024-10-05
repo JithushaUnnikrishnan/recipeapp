@@ -31,7 +31,7 @@ class _Signup_reState extends State<Signup_re> {
     });
     print("success");
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Bottomnavigation()));
+        context, MaterialPageRoute(builder: (context) => Login()));
   }
 
   @override
